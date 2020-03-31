@@ -1,0 +1,17 @@
+version: "2"
+services:
+  foldingathome:
+    image: linuxserver/foldingathome
+    container_name: foldingathome
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+    volumes:
+      - /home/isoardi/.config/foldingAThome:/config
+    ports:
+      - 7396:7396
+      - 36330:36330 #optional
+    restart: unless-stopped
+    labels:
+      - "traefik.http.routers.forldingathome.rule=Host(`foldingathome.teutatis.local`)"
